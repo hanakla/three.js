@@ -1456,7 +1456,9 @@ function onPointerDown( event ) {
 
 	if ( this._pointers.length === 0 ) {
 
-		this.domElement.setPointerCapture( event.pointerId );
+		if ( ! document.pointerLockElement ) {
+			this.domElement.setPointerCapture( event.pointerId );
+		}
 
 		this.domElement.addEventListener( 'pointermove', this._onPointerMove );
 		this.domElement.addEventListener( 'pointerup', this._onPointerUp );
